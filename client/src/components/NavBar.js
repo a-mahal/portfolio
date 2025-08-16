@@ -33,7 +33,7 @@ function NavText({ href, text, isMain }) {
 // props to how it changes the look of the component.
 export default function NavBar() {
   return (
-    <AppBar position='static' sx={{ paddingY: 3 }}>
+    <AppBar position='static' sx={{ paddingY: 3, backgroundColor: 'black' }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           {/* Stack Name + Title */}
@@ -61,8 +61,8 @@ export default function NavBar() {
           </Box>
           {/* Push the NavText items to the right */}
           <Box sx={{ marginLeft: 'auto', display: 'flex' }}>
-            <NavText href='/albums' text='ALBUMS' />
-            <NavText href='/songs' text='SONGS' />
+            <NavText href='/albums' text='ABOUT' />
+            <NavText href='/songs' text='TECHNICAL SKILLS' />
           </Box>
         </Toolbar>
       </Container>

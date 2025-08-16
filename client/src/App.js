@@ -26,7 +26,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <BrowserRouter basename="/portfolio">
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
