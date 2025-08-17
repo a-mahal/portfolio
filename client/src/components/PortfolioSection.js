@@ -1,17 +1,18 @@
 import React from 'react';
 import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-import F1Logo from '../images/F1_logo.png';
-import headshot from '../images/Headshot.png';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-import TechnicalSkillsSection from '../components/TechnicalSkillsSection';
+
+import F1Logo from '../images/F1_logo.png';
+import portfolio_img from '../images/portfolio_image.png'
+import reelroots from '../images/ReelRoots.mp4'
 
 // Add the missing projects data
 const projects = [
   {
     title: 'My Porfolio',
     description: 'This will be a section explaining the technology I used.',
-    image: F1Logo,
+    image: portfolio_img,
     link: '/project1',
   },
   {
@@ -21,9 +22,9 @@ const projects = [
     link: '/project2',
   },
   {
-    title: 'Project 3',
+    title: 'Trees and Film of San Francisco',
     description: 'Template page 3',
-    image: '/static/images/cards/project3.jpg',
+    image: reelroots,
     link: '/project3',
   },
   {
@@ -59,6 +60,8 @@ export default function PortfolioSection() {
         >
           {/* ---------- Section: Individual Cards ---------- */}
           {projects.map((project, index) => (
+            
+
             <Card
               key={index}
               sx={{
@@ -66,21 +69,23 @@ export default function PortfolioSection() {
                 maxWidth: '1400px',        // Maximum width for readability
                 height: '400px',          // Fixed height for banner style
                 display: 'flex',
-                flexDirection: 'row',     // Horizontal layout
+                flexDirection: index % 2 == 0 ? 'row' : 'row-reverse',     // Horizontal layout
                 transition: '0.3s',
                 '&:hover': { transform: 'scale(1.02)' }, // Subtle hover effect
                 backgroundColor: 'grey.800',
               }}
             >
-              {/* ---------- Section: Card Image / Media (Left Side) ---------- */}
+              {/* ---------- Section: Left Side of card ---------- */}
               <CardMedia
                 component="img"
                 image={project.image}
                 alt={project.title}
                 sx={{
-                  width: '40%',          // Fixed width for image
+                  width: '50%',          // Fixed width for image
                   height: '100%',          // Full height of card
-                  objectFit: 'cover',
+                  objectFit: 'contain',
+                  paddingX: 4
+
                 }}
               />
 
@@ -108,7 +113,7 @@ export default function PortfolioSection() {
                     }}
                   >
                     <Typography
-                      variant="h5"
+                      variant="h4"
                       sx={{ 
                         fontWeight: 600, 
                         marginBottom: 2,
@@ -131,7 +136,7 @@ export default function PortfolioSection() {
 
                 {/* ---------- Section: Card Actions (Button) ---------- */}
                 <CardActions sx={{ padding: 2, justifyContent: 'flex-end' }}>
-                  <Button size="small" color="primary">
+                  <Button size="small" color="secondary">
                     View Project
                   </Button>
                 </CardActions>
