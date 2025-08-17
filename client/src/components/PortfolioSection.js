@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Chip, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 
@@ -10,39 +10,43 @@ import reelroots from '../images/ReelRoots.mp4'
 // Add the missing projects data
 const projects = [
   {
-    title: 'My Porfolio',
-    description: 'This will be a section explaining the technology I used.',
+    title: 'Portfolio Website',
+    description: 'Created a static website utilizing my skills with frontend development, specifically with the following technologies.',
     image: portfolio_img,
     link: '/project1',
+    skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
     title: 'Formula One Dashboard',
     description: 'Template page 2',
     image: F1Logo,
-    link: '/project2',
+    link: '/formula1',
+    skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
-    title: 'Trees and Film of San Francisco',
-    description: 'Template page 3',
+    title: 'Full Stack Application',
+    description: 'Built a full stack website utilizing a postgrsql database hosted on AWS and user authentication to showcase the trees and film history in San Francisco.',
     image: reelroots,
     link: '/project3',
+    skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
-    title: 'Project 4',
+    title: 'Sudoku Solver via Machine Learning',
     description: 'Template page 4',
     image: '/static/images/cards/project4.jpg',
     link: '/project4',
+    skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
 ];
 
 export default function PortfolioSection() {
   return (
-      <Box sx={{ padding: 6, backgroundColor: 'grey.900', minHeight: '100vh' }}>
+      <Box sx={{ padding: 6, backgroundColor: 'black', minHeight: '100vh' }}>
         <Box>
             {/* ---------- Section: Portfolio Header ---------- */}
           <Typography
             variant="h2"
-            sx={{ fontWeight: 700, marginBottom: 4, textAlign: 'left', color: 'white'}}
+            sx={{ fontWeight: 700, marginBottom: 4, textAlign: 'center', color: 'white'}}
           >
             PROJECTS
           </Typography>
@@ -91,55 +95,76 @@ export default function PortfolioSection() {
 
               {/* ---------- Section: Right Side Content ---------- */}
               <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-                {/* ---------- Section: Card Action Area (clickable content) ---------- */}
-                <CardActionArea
-                  href={`${process.env.PUBLIC_URL}${project.link}`}
-                  sx={{ 
-                    flex: 1, 
-                    display: 'flex', 
-                    flexDirection: 'column',
-                    alignItems: 'stretch'
-                  }}
-                >
-                  {/* ---------- Section: Card Content / Text ---------- */}
-                  <CardContent
-                    sx={{
-                      flex: 1,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      padding: 3,
-                      textAlign: 'left',    // Left align text
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      sx={{ 
-                        fontWeight: 600, 
-                        marginBottom: 2,
-                        wordBreak: 'break-word', 
-                        whiteSpace: 'normal',
-                        color: 'white'
-                      }}
-                    >
-                      {project.title}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      color="text.secondary"
-                      sx={{ wordBreak: 'break-word', whiteSpace: 'normal', color: 'white' }}
-                    >
-                      {project.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
 
-                {/* ---------- Section: Card Actions (Button) ---------- */}
-                <CardActions sx={{ padding: 2, justifyContent: 'flex-end' }}>
-                  <Button size="small" color="secondary">
+                {/* ---------- Section: Card Content / Text ---------- */}
+                <CardContent
+                sx={{
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    padding: 3,
+                    textAlign: 'center',    // Left align text
+                }}
+                >
+                <Typography
+                    variant="h4"
+                    sx={{ 
+                    fontWeight: 600, 
+                    marginBottom: 2,
+                    wordBreak: 'break-word', 
+                    whiteSpace: 'normal',
+                    color: 'white'
+                    }}
+                >
+                    {project.title}
+                </Typography>
+                <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ wordBreak: 'break-word', whiteSpace: 'normal', color: 'white' }}
+                >
+                    {project.description}
+                </Typography>
+
+                {/* TODO: Add a section with the technologies used */}
+                <Box sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    gap: 1.5,
+                    marginTop: 2
+                }}>
+                    {project.skills.map((skill) => (
+                    <Chip
+                        key={skill}
+                        label={skill}
+                        sx={{
+                        backgroundColor: 'black',
+                        color: 'white',
+                        fontWeight: 500,
+                        fontSize: '0.9rem',
+                        '&:hover': {
+                            backgroundColor: '#4CAF50',
+                            transform: 'translateY(-2px)',
+                            transition: 'all 0.2s ease'
+                        }
+                        }}
+                    />
+                    ))}
+                </Box>
+
+                {/* This brings you to the project page */}
+                <Button 
+                    size="small" 
+                    color="secondary"
+                    textAlign="right"
+                    onClick={() => window.location.href = `${process.env.PUBLIC_URL}${project.link}`}
+                    sx={{paddingY: 2}}
+                >
                     View Project
-                  </Button>
-                </CardActions>
+                </Button>
+                </CardContent>
               </Box>
             </Card>
           ))}

@@ -7,7 +7,7 @@ import TechnicalSkillsSection from '../components/TechnicalSkillsSection';
 
 export default function IntroSection() {
   return (
-    <Box sx={{ padding: 6, backgroundColor: 'black', minHeight: '80vh' }}>
+    <Box sx={{ padding: 6, backgroundColor: 'black', minHeight: '85vh' }}>
         {/* ---------- Container for left text and right image ---------- */}
         <Box sx={{ 
             display: 'flex', 
