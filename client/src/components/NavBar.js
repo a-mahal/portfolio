@@ -1,6 +1,6 @@
 import { AppBar, Container, Toolbar, Typography, Box } from '@mui/material'
 import { NavLink } from 'react-router-dom';
-
+import resumePDF from '../assets/resume.pdf';
 // The hyperlinks in the NavBar contain a lot of repeated formatting code so a
 // helper component NavText local to the file is defined to prevent repeated code.
 function NavText({ href, text, isMain }) {
@@ -112,7 +112,7 @@ export default function NavBar() {
               }}
             >
               <a 
-                href="/resume.pdf" 
+                href={resumePDF}
                 download="Arjun_Mahal_Resume.pdf"
                 style={{ color: 'inherit', textDecoration: 'none' }}
               >
