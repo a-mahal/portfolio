@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, Chip, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Chip, Card, CardActionArea, CardContent, CardMedia, Typography, useMediaQuery, useTheme } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 
 import F1Logo from '../images/F1_logo.png';
 import portfolio_img from '../images/portfolio_image.png'
 import reelroots from '../images/ReelRoots.mp4'
+import sudoku from '../images/sudoku.png';
 
 // Add the missing projects data
 const projects = [
@@ -13,162 +14,196 @@ const projects = [
     title: 'Portfolio Website',
     description: 'Created a static website utilizing my skills with frontend development, specifically with the following technologies.',
     image: portfolio_img,
-    link: '/project1',
+    link: '/portfolio',
     skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
     title: 'Formula One Dashboard',
     description: 'Template page 2',
     image: F1Logo,
-    link: '/formula1',
+    link: '/F1',
     skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
     title: 'Full Stack Application',
     description: 'Built a full stack website utilizing a postgrsql database hosted on AWS and user authentication to showcase the trees and film history in San Francisco.',
     image: reelroots,
-    link: '/project3',
+    link: '/reelroots',
     skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
     title: 'Sudoku Solver via Machine Learning',
     description: 'Template page 4',
-    image: '/static/images/cards/project4.jpg',
-    link: '/project4',
+    image: sudoku,
+    link: '/sudoku',
     skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
 ];
 
 export default function PortfolioSection() {
-  return (
-      <Box sx={{ padding: 6, backgroundColor: 'black', minHeight: '100vh' }}>
-        <Box>
-            {/* ---------- Section: Portfolio Header ---------- */}
-          <Typography
-            variant="h2"
-            sx={{ fontWeight: 700, marginBottom: 4, textAlign: 'center', color: 'white'}}
-          >
-            PROJECTS
-          </Typography>
-        </Box>
-        
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-        {/* ---------- Section: Portfolio Cards Container (Vertical Stack) ---------- */}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',  // Stack cards vertically
-            alignItems: 'center',
-            gap: 4, // spacing between cards
+  return (
+    <Box sx={{ 
+      padding: isMobile ? 2 : 6, 
+      backgroundColor: 'black', 
+      minHeight: '100vh' 
+    }}>
+      <Box>
+        {/* Section: Portfolio Header */}
+        <Typography
+          variant={isMobile ? "h3" : "h2"}
+          sx={{ 
+            fontWeight: 700, 
+            marginBottom: isMobile ? 3 : 4, 
+            textAlign: 'center', 
+            color: 'white',
+            fontSize: isSmallMobile ? '2rem' : '3rem'
           }}
         >
-          {/* ---------- Section: Individual Cards ---------- */}
-          {projects.map((project, index) => (
-            
-
-            <Card
-              key={index}
+          PROJECTS
+        </Typography>
+      </Box>
+      
+      {/* Section: Portfolio Cards Container (Vertical Stack) */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: isMobile ? 3 : 4,
+        }}
+      >
+        {/* Section: Individual Cards */}
+        {projects.map((project, index) => (
+          <Card
+            key={index}
+            sx={{
+              width: '100%',
+              maxWidth: isMobile ? '100%' : '1400px',
+              height: isMobile ? 'auto' : 'auto',
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : (index % 2 === 0 ? 'row' : 'row-reverse'),
+              transition: '0.3s',
+              '&:hover': { 
+                transform: isMobile ? 'none' : 'scale(1.02)' 
+              },
+              backgroundColor: 'grey.800',
+            }}
+          >
+            {/* Section: Image */}
+            <CardMedia
+              component="img"
+              image={project.image}
+              alt={project.title}
               sx={{
-                width: '100%',            // Full width
-                maxWidth: '1400px',        // Maximum width for readability
-                height: '400px',          // Fixed height for banner style
-                display: 'flex',
-                flexDirection: index % 2 == 0 ? 'row' : 'row-reverse',     // Horizontal layout
-                transition: '0.3s',
-                '&:hover': { transform: 'scale(1.02)' }, // Subtle hover effect
-                backgroundColor: 'grey.800',
+                width: isMobile ? '100%' : '50%',
+                height: isMobile ? '200px' : '400px',
+                objectFit: 'contain',
+                padding: isMobile ? 2 : 4,
               }}
-            >
-              {/* ---------- Section: Left Side of card ---------- */}
-              <CardMedia
-                component="img"
-                image={project.image}
-                alt={project.title}
+            />
+
+            {/* Section: Content */}
+            <Box sx={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              flex: 1,
+              minHeight: isMobile ? 'auto' : 'inherit'
+            }}>
+              <CardContent
                 sx={{
-                  width: '50%',          // Fixed width for image
-                  height: '100%',          // Full height of card
-                  objectFit: 'contain',
-                  paddingX: 4
-
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  padding: isMobile ? 2 : 3,
+                  textAlign: 'center',
                 }}
-              />
-
-              {/* ---------- Section: Right Side Content ---------- */}
-              <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-
-                {/* ---------- Section: Card Content / Text ---------- */}
-                <CardContent
-                sx={{
-                    flex: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    padding: 3,
-                    textAlign: 'center',    // Left align text
-                }}
-                >
+              >
                 <Typography
-                    variant="h4"
-                    sx={{ 
+                  variant={isMobile ? "h5" : "h4"}
+                  sx={{ 
                     fontWeight: 600, 
-                    marginBottom: 2,
+                    marginBottom: isMobile ? 1.5 : 2,
                     wordBreak: 'break-word', 
                     whiteSpace: 'normal',
-                    color: 'white'
-                    }}
+                    color: 'white',
+                    fontSize: isSmallMobile ? '1.5rem' : 'inherit'
+                  }}
                 >
-                    {project.title}
+                  {project.title}
                 </Typography>
+                
                 <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{ wordBreak: 'break-word', whiteSpace: 'normal', color: 'white' }}
+                  variant={isMobile ? "body2" : "body1"}
+                  color="text.secondary"
+                  sx={{ 
+                    wordBreak: 'break-word', 
+                    whiteSpace: 'normal', 
+                    color: 'white',
+                    marginBottom: isMobile ? 2 : 0,
+                    lineHeight: isMobile ? 1.5 : 'inherit'
+                  }}
                 >
-                    {project.description}
+                  {project.description}
                 </Typography>
 
-                {/* TODO: Add a section with the technologies used */}
+                {/* Skills/Technologies Section */}
                 <Box sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center',
-                    gap: 1.5,
-                    marginTop: 2
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                  gap: isMobile ? 1 : 1.5,
+                  marginTop: isMobile ? 1.5 : 2
                 }}>
-                    {project.skills.map((skill) => (
+                  {project.skills.map((skill) => (
                     <Chip
-                        key={skill}
-                        label={skill}
-                        sx={{
+                      key={skill}
+                      label={skill}
+                      size={isSmallMobile ? 'small' : 'medium'}
+                      sx={{
                         backgroundColor: 'black',
                         color: 'white',
                         fontWeight: 500,
-                        fontSize: '0.9rem',
+                        fontSize: isSmallMobile ? '0.7rem' : isMobile ? '0.8rem' : '0.9rem',
                         '&:hover': {
-                            backgroundColor: '#4CAF50',
-                            transform: 'translateY(-2px)',
-                            transition: 'all 0.2s ease'
+                          backgroundColor: '#4CAF50',
+                          transform: 'translateY(-2px)',
+                          transition: 'all 0.2s ease'
                         }
-                        }}
+                      }}
                     />
-                    ))}
+                  ))}
                 </Box>
 
-                {/* This brings you to the project page */}
+                {/* View Project Button */}
                 <Button 
-                    size="small" 
-                    color="secondary"
-                    textAlign="right"
-                    onClick={() => window.location.href = `${process.env.PUBLIC_URL}${project.link}`}
-                    sx={{paddingY: 2}}
+                  size={isMobile ? "medium" : "small"}
+                  color="secondary"
+                  variant={isMobile ? "outlined" : "text"}
+                  onClick={() => window.location.href = `${process.env.PUBLIC_URL}${project.link}`}
+                  sx={{
+                    paddingY: isMobile ? 1.5 : 2,
+                    marginTop: isMobile ? 2 : 1,
+                    fontSize: isMobile ? '0.9rem' : 'inherit',
+                    borderColor: isMobile ? 'white' : 'inherit',
+                    color: isMobile ? 'white' : 'secondary',
+                    '&:hover': {
+                      borderColor: isMobile ? '#4CAF50' : 'inherit',
+                      backgroundColor: isMobile ? 'rgba(76, 175, 80, 0.1)' : 'inherit'
+                    }
+                  }}
                 >
-                    View Project
+                  View Project
                 </Button>
-                </CardContent>
-              </Box>
-            </Card>
-          ))}
-        </Box>
+              </CardContent>
+            </Box>
+          </Card>
+        ))}
       </Box>
+    </Box>
   );
 }

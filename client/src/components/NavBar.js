@@ -4,35 +4,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import resumePDF from '../assets/resume.pdf';
 
-// The hyperlinks in the NavBar contain a lot of repeated formatting code so a
-// helper component NavText local to the file is defined to prevent repeated code.
-function NavText({ href, text, isMain, isMobile }) {
-  return (
-    <Typography
-      variant={isMain ? (isMobile ? 'h6' : 'h5') : (isMobile ? 'body2' : 'h7')}
-      noWrap
-      sx={{
-        marginRight: isMobile ? '0px' : '30px',
-        marginBottom: isMobile ? '16px' : '0px',
-        fontFamily: 'monospace',
-        fontWeight: 700,
-        letterSpacing: isMobile ? '.1rem' : '.3rem',
-        fontSize: isMobile ? '0.875rem' : 'inherit'
-      }}
-    >
-      <NavLink
-        to={href}
-        style={{
-          color: 'inherit',
-          textDecoration: 'none',
-        }}
-      >
-        {text}
-      </NavLink>
-    </Typography>
-  )
-}
-
 // Mobile menu item component
 function MobileNavItem({ href, text, isExternal, onClick }) {
   return (
@@ -93,16 +64,26 @@ export default function NavBar() {
             marginRight: isMobile ? '0px' : '30px',
             flexGrow: isMobile ? 1 : 0
           }}>
-            <Typography
-              variant={isMobile ? "h5" : "h3"}
-              sx={{
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: isMobile ? '.1rem' : '.3rem',
-              }}
+            <NavLink 
+              to="/" 
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              ARJUN MAHAL
-            </Typography>
+              <Typography
+                variant={isMobile ? "h5" : "h3"}
+                sx={{
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: isMobile ? '.1rem' : '.3rem',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    opacity: 0.8,
+                    transition: 'opacity 0.2s ease'
+                  }
+                }}
+              >
+                ARJUN MAHAL
+              </Typography>
+            </NavLink>
             <Typography
               variant={isMobile ? "body2" : "subtitle1"}
               sx={{
