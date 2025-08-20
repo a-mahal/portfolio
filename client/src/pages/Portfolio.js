@@ -6,32 +6,43 @@ import {
   Paper, 
   Chip,
   useMediaQuery,
-  useTheme
+  useTheme,
+  Grid,
+  Card,
+  CardContent
 } from '@mui/material';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-// You'll need to add your Sudoku image to your images folder
-// import SudokuImage from '../images/Sudoku_Image.png';
+const technologiesUsed = [
+  { name: 'React', category: 'Frontend Framework' },
+  { name: 'Material-UI', category: 'UI Library' },
+  { name: 'React Router', category: 'Navigation' },
+  { name: 'JavaScript ES6+', category: 'Programming Language' },
+  { name: 'HTML5', category: 'Markup' },
+  { name: 'CSS3', category: 'Styling' },
+  { name: 'Responsive Design', category: 'Methodology' },
+  { name: 'Git', category: 'Version Control' }
+];
 
-const codeSnippet = `function AC-3(csp) # return the CSP, possibly with reduced domains
-    inputs: csp, a binary csp with variables {X1, X2, ..., Xn}
-    local variables: queue, a queue of arcs initially the arcs in csp
-    while queue is not empty do:
-        (Xi, Xj) = queue.pop()
-        if REMOVE-INCONSISTENT-VALUES(Xi, Xj):
-            for each Xk in NEIGHBORS[Xi] – {Xj}:
-                add (Xk, Xi) to queue
+const features = [
+  {
+    title: 'Responsive Navigation',
+    description: 'Mobile-first navigation with hamburger menu for smaller screens and traditional navigation for desktop users.'
+  },
+  {
+    title: 'Project Showcase',
+    description: 'Dynamic project cards with alternating layouts, hover effects, and detailed project information display.'
+  },
+  {
+    title: 'Technical Skills Display',
+    description: 'Interactive chips showcasing technical competencies organized by category with hover animations.'
+  },
+  {
+    title: 'Mobile Optimization',
+    description: 'Fully responsive design ensuring optimal viewing experience across all device sizes and orientations.'
+  }
+];
 
-function REMOVE-INCONSISTENT-VALUES(Xi, Xj) # return true iff we remove a value
-    removed = false
-    for each x in DOMAIN[Xi]:
-        if no value y in DOMAIN[Xj] allows (x,y) to satisfy the constraints between Xi and Xj:
-            delete x from DOMAIN[Xi]
-            removed = True
-    return removed`;
-
-export default function SudokuSolverPage() {
+export default function PortfolioProjectPage() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -62,17 +73,38 @@ export default function SudokuSolverPage() {
               marginBottom: 2
             }}
           >
-            Sudoku Game Solver
+            Portfolio Website Development
           </Typography>
           
-          <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            gap: 1,
+            flexWrap: 'wrap',
+            marginBottom: 2 
+          }}>
             <Chip 
-              label="Python" 
+              label="React" 
               sx={{ 
-                backgroundColor: '#4CAF50',
+                backgroundColor: '#61DAFB',
+                color: 'black',
+                fontWeight: 600
+              }}
+            />
+            <Chip 
+              label="Material-UI" 
+              sx={{ 
+                backgroundColor: '#0081CB',
                 color: 'white',
-                fontWeight: 600,
-                fontSize: '0.9rem' 
+                fontWeight: 600
+              }}
+            />
+            <Chip 
+              label="JavaScript" 
+              sx={{ 
+                backgroundColor: '#F7DF1E',
+                color: 'black',
+                fontWeight: 600
               }}
             />
           </Box>
@@ -85,11 +117,11 @@ export default function SudokuSolverPage() {
               fontStyle: 'italic'
             }}
           >
-            October 20, 2024
+            A modern, responsive web application showcasing development skills and projects
           </Typography>
         </Paper>
 
-        {/* Description Section */}
+        {/* Project Overview */}
         <Paper 
           elevation={2}
           sx={{ 
@@ -110,7 +142,7 @@ export default function SudokuSolverPage() {
               marginBottom: 3
             }}
           >
-            Description of Game/Rules
+            Project Overview
           </Typography>
           
           <Typography 
@@ -118,64 +150,9 @@ export default function SudokuSolverPage() {
             paragraph
             sx={{ lineHeight: 1.7, marginBottom: 2 }}
           >
-            Sudoku is a logic-based puzzle game played on a 9×9 grid divided into nine 3×3 subgrids, 
-            or "boxes." Each row, column, and box must contain all numbers from 1 to 9 without repetition. 
-            The puzzle begins with some cells pre-filled with numbers, called "givens," which serve as 
-            clues to help players complete the grid. The challenge of Sudoku lies in deducing the values 
-            of the empty cells based on the constraints imposed by the existing numbers.
-          </Typography>
-          
-          <Typography 
-            variant="body1" 
-            paragraph
-            sx={{ lineHeight: 1.7, marginBottom: 3 }}
-          >
-            The objective of Sudoku is to fill every empty cell so that each number from 1 to 9 appears 
-            only once in each row, column, and box. Players must use logic and process of elimination 
-            rather than guesswork, analyzing the grid to deduce where each number can or cannot go. 
-            Sudoku puzzles come in various levels of difficulty, ranging from easy, which require 
-            straightforward deductions, to hard or expert levels, which may need advanced strategies to solve.
-          </Typography>
-
-          {/* Placeholder for Sudoku image - uncomment and adjust when you add the image */}
-          {/* 
-          <Box sx={{ display: 'flex', justifyContent: 'center', marginY: 3 }}>
-            <img 
-              src={SudokuImage} 
-              alt="Sudoku puzzle example" 
-              style={{ 
-                maxWidth: '300px', 
-                width: '100%',
-                height: 'auto',
-                borderRadius: '8px'
-              }}
-            />
-          </Box>
-          */}
-        </Paper>
-
-        {/* Notable Aspects Section */}
-        <Paper 
-          elevation={2}
-          sx={{ 
-            padding: isMobile ? 3 : 4, 
-            marginBottom: 4,
-            backgroundColor: 'grey.800',
-            color: 'white'
-          }}
-        >
-          <Typography 
-            variant={isMobile ? "h5" : "h4"} 
-            component="h2" 
-            gutterBottom
-            sx={{ 
-              fontWeight: 600,
-              borderBottom: '2px solid #4CAF50',
-              paddingBottom: 1,
-              marginBottom: 3
-            }}
-          >
-            Notable Aspects of the Game Environment
+            This portfolio website serves as a comprehensive showcase of my development skills and completed projects. 
+            Built from the ground up using modern web technologies, the site demonstrates proficiency in frontend 
+            development, responsive design principles, and user experience optimization.
           </Typography>
           
           <Typography 
@@ -183,51 +160,23 @@ export default function SudokuSolverPage() {
             paragraph
             sx={{ lineHeight: 1.7, marginBottom: 2 }}
           >
-            This game setup can be represented as a constraint satisfaction problem, meaning we can set up 
-            the environment with formal declarations of what is allowed and what is not allowed (constraints) 
-            and implement a simple general purpose algorithm to follow these rules until it arrives at a solution. 
-            Note that in these types of games, there is only one solution to the problem, therefore we do not 
-            have to consider if the solution is optimal, just simply whether it is correct.
+            The project began with careful planning of the user interface and user experience, focusing on creating 
+            a clean, professional appearance that would effectively communicate technical capabilities while remaining 
+            accessible across all device types.
           </Typography>
-          
-          <Typography 
-            variant="body1" 
-            
-            sx={{ lineHeight: 1.7, marginBottom: 2 }}
-          >
-            More formally, a CSP consists of:
-          </Typography>
-
-          <Box sx={{ paddingLeft: 2, marginBottom: 2 }}>
-            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-              • Finite set of variables X₁, X₂, ..., Xₙ
-            </Typography>
-            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-              • Nonempty domain of possible values for each variable D₁, D₂, ..., Dₙ where Dᵢ = v₁, ..., vₖ
-            </Typography>
-            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-              • Finite set of constraints C₁, C₂, ..., Cₘ
-            </Typography>
-            <Typography variant="body2" sx={{ paddingLeft: 2, color: 'grey.300' }}>
-              Each constraint Cᵢ limits the values that variables can take, e.g., X₁ ≠ X₂
-            </Typography>
-            <Typography variant="body2" sx={{ paddingLeft: 2, color: 'grey.300' }}>
-              A state is defined as an assignment of values to some or all variables.
-            </Typography>
-          </Box>
 
           <Typography 
             variant="body1" 
-            
+            paragraph
             sx={{ lineHeight: 1.7 }}
           >
-            To clarify how this relates to this game, each position on the 9×9 board is a variable. 
-            All variables given from the start will have a domain the size of one that consists of the 
-            given number. All other variables will have a domain size of 9 portrayed as a set 1, 2, 3, 4, 5, 6, 7, 8, 9.
+            Key objectives included implementing a mobile-first responsive design, creating an intuitive navigation 
+            system, and developing reusable components that could efficiently display project information and 
+            technical skills.
           </Typography>
         </Paper>
 
-        {/* Algorithm Section */}
+        {/* Technical Implementation */}
         <Paper 
           elevation={2}
           sx={{ 
@@ -248,59 +197,52 @@ export default function SudokuSolverPage() {
               marginBottom: 3
             }}
           >
-            Algorithm Used to Solve Sudoku
+            Technical Implementation
+          </Typography>
+          
+          <Typography 
+            variant="h6" 
+            gutterBottom
+            sx={{ fontWeight: 600, marginTop: 3, marginBottom: 2 }}
+          >
+            Frontend Architecture
           </Typography>
           
           <Typography 
             variant="body1" 
             paragraph
-            sx={{ lineHeight: 1.7, marginBottom: 3 }}
+            sx={{ lineHeight: 1.7, marginBottom: 2 }}
           >
-            Once we have the game board defined through the formal definition of a CSP, we can begin 
-            implementing the algorithm AC-3 to solve. AC-3 in this situation takes pairs of variables 
-            that would need to be checked for constraint issues, and conduct testing on their relationship. 
-            If there is a domain in the first of the pair such that there is no domain for the second 
-            pair to satisfy any constraints, then the domain element of the first pair is removed. 
-            This is conducted until the queue of arch pairs to check is empty. Shown below is the 
-            pseudo code for the algorithm.
+            The application is built using React as the core framework, leveraging functional components and React Hooks 
+            for state management. The component architecture follows a modular approach, with reusable components like 
+            NavBar, IntroSection, PortfolioSection, and TechnicalSkillsSection that can be easily maintained and updated.
           </Typography>
 
-          <Box sx={{ marginY: 3 }}>
-            <SyntaxHighlighter 
-              language="python" 
-              style={vscDarkPlus}
-              customStyle={{
-                borderRadius: '8px',
-                fontSize: isMobile ? '0.8rem' : '0.9rem'
-              }}
-            >
-              {codeSnippet}
-            </SyntaxHighlighter>
-          </Box>
-        </Paper>
-
-        {/* Improvements Section */}
-        <Paper 
-          elevation={2}
-          sx={{ 
-            padding: isMobile ? 3 : 4, 
-            marginBottom: 4,
-            backgroundColor: 'grey.800',
-            color: 'white'
-          }}
-        >
           <Typography 
-            variant={isMobile ? "h5" : "h4"} 
-            component="h2" 
+            variant="h6" 
             gutterBottom
-            sx={{ 
-              fontWeight: 600,
-              borderBottom: '2px solid #4CAF50',
-              paddingBottom: 1,
-              marginBottom: 3
-            }}
+            sx={{ fontWeight: 600, marginTop: 3, marginBottom: 2 }}
           >
-            Handling "Hard/Extreme" Difficulty Sudoku Games
+            Responsive Design Strategy
+          </Typography>
+          
+          <Typography 
+            variant="body1" 
+            paragraph
+            sx={{ lineHeight: 1.7, marginBottom: 2 }}
+          >
+            Material-UI's responsive breakpoint system was extensively utilized to create a mobile-first design. 
+            The implementation includes dynamic layout changes, such as converting the desktop navigation to a 
+            hamburger menu on mobile devices, and restructuring project cards from horizontal layouts to vertical 
+            stacks on smaller screens.
+          </Typography>
+
+          <Typography 
+            variant="h6" 
+            gutterBottom
+            sx={{ fontWeight: 600, marginTop: 3, marginBottom: 2 }}
+          >
+            Component Design Patterns
           </Typography>
           
           <Typography 
@@ -308,17 +250,191 @@ export default function SudokuSolverPage() {
             paragraph
             sx={{ lineHeight: 1.7 }}
           >
-            In the implementation so far, it is possible that we end up with variables that have a domain 
-            greater than one, meaning the game is unfinished. To combat this issue, we will add another 
-            layer of complexity to the overall solution. Now, we will have our algorithm run in a DFS 
-            recursive loop where after the AC-3 has been conducted, we will then select a variable that 
-            has a domain larger than one (has not been assigned a single digit yet) at random and 
-            iteratively test out each possible domain value. By doing this in a DFS loop, we will be 
-            able to see every variation of the game starting from the output of the original AC-3 algorithm.
+            Each major section was developed as an independent component with its own styling and logic. The project 
+            cards implement alternating layouts for visual interest, while the technical skills section uses a 
+            chip-based display with hover animations to create an engaging user interaction experience.
           </Typography>
         </Paper>
 
-        {/* Code Section */}
+        {/* Technologies Used */}
+        <Paper 
+          elevation={2}
+          sx={{ 
+            padding: isMobile ? 3 : 4, 
+            marginBottom: 4,
+            backgroundColor: 'grey.800',
+            color: 'white'
+          }}
+        >
+          <Typography 
+            variant={isMobile ? "h5" : "h4"} 
+            component="h2" 
+            gutterBottom
+            sx={{ 
+              fontWeight: 600,
+              borderBottom: '2px solid #4CAF50',
+              paddingBottom: 1,
+              marginBottom: 3
+            }}
+          >
+            Technologies Used
+          </Typography>
+          
+          <Grid container spacing={2}>
+            {technologiesUsed.map((tech, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Card sx={{ backgroundColor: '#404040', height: '100%' }}>
+                  <CardContent>
+                    <Typography 
+                      variant="h6" 
+                      component="h3"
+                      sx={{ color: 'white', fontWeight: 600, marginBottom: 1 }}
+                    >
+                      {tech.name}
+                    </Typography>
+                    <Typography 
+                      variant="body2" 
+                      sx={{ color: 'grey.300' }}
+                    >
+                      {tech.category}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Paper>
+
+        {/* Key Features */}
+        <Paper 
+          elevation={2}
+          sx={{ 
+            padding: isMobile ? 3 : 4, 
+            marginBottom: 4,
+            backgroundColor: 'grey.800',
+            color: 'white'
+          }}
+        >
+          <Typography 
+            variant={isMobile ? "h5" : "h4"} 
+            component="h2" 
+            gutterBottom
+            sx={{ 
+              fontWeight: 600,
+              borderBottom: '2px solid #4CAF50',
+              paddingBottom: 1,
+              marginBottom: 3
+            }}
+          >
+            Key Features Implemented
+          </Typography>
+          
+          <Grid container spacing={3}>
+            {features.map((feature, index) => (
+              <Grid item xs={12} md={6} key={index}>
+                <Card sx={{ backgroundColor: '#404040', height: '100%' }}>
+                  <CardContent>
+                    <Typography 
+                      variant="h6" 
+                      component="h3"
+                      gutterBottom
+                      sx={{ color: 'white', fontWeight: 600 }}
+                    >
+                      {feature.title}
+                    </Typography>
+                    <Typography 
+                      variant="body2" 
+                      sx={{ color: 'grey.300', lineHeight: 1.6 }}
+                    >
+                      {feature.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Paper>
+
+        {/* Development Process */}
+        <Paper 
+          elevation={2}
+          sx={{ 
+            padding: isMobile ? 3 : 4, 
+            marginBottom: 4,
+            backgroundColor: 'grey.800',
+            color: 'white'
+          }}
+        >
+          <Typography 
+            variant={isMobile ? "h5" : "h4"} 
+            component="h2" 
+            gutterBottom
+            sx={{ 
+              fontWeight: 600,
+              borderBottom: '2px solid #4CAF50',
+              paddingBottom: 1,
+              marginBottom: 3
+            }}
+          >
+            Development Process & Challenges
+          </Typography>
+          
+          <Typography 
+            variant="h6" 
+            gutterBottom
+            sx={{ fontWeight: 600, marginTop: 3, marginBottom: 2 }}
+          >
+            Mobile-First Approach
+          </Typography>
+          
+          <Typography 
+            variant="body1" 
+            paragraph
+            sx={{ lineHeight: 1.7, marginBottom: 2 }}
+          >
+            One of the primary challenges was ensuring the website provided an excellent user experience across 
+            all device sizes. This required implementing responsive breakpoints, adjusting typography scales, 
+            and completely restructuring layouts for mobile devices while maintaining the design integrity.
+          </Typography>
+
+          <Typography 
+            variant="h6" 
+            gutterBottom
+            sx={{ fontWeight: 600, marginTop: 3, marginBottom: 2 }}
+          >
+            Performance Optimization
+          </Typography>
+          
+          <Typography 
+            variant="body1" 
+            paragraph
+            sx={{ lineHeight: 1.7, marginBottom: 2 }}
+          >
+            Attention was paid to performance optimization through efficient component structuring, proper use 
+            of React hooks, and implementing smooth animations and transitions that enhance the user experience 
+            without compromising loading times.
+          </Typography>
+
+          <Typography 
+            variant="h6" 
+            gutterBottom
+            sx={{ fontWeight: 600, marginTop: 3, marginBottom: 2 }}
+          >
+            Code Organization
+          </Typography>
+          
+          <Typography 
+            variant="body1" 
+            paragraph
+            sx={{ lineHeight: 1.7 }}
+          >
+            The project structure was organized to promote maintainability and scalability, with separate 
+            directories for components, pages, and assets. Each component was designed to be self-contained 
+            and reusable, following React best practices and clean code principles.
+          </Typography>
+        </Paper>
+
+        {/* Future Enhancements */}
         <Paper 
           elevation={2}
           sx={{ 
@@ -338,7 +454,17 @@ export default function SudokuSolverPage() {
               marginBottom: 3
             }}
           >
-            Code
+            Future Enhancements
+          </Typography>
+          
+          <Typography 
+            variant="body1" 
+            paragraph
+            sx={{ lineHeight: 1.7, marginBottom: 2 }}
+          >
+            Planned improvements include implementing a dark/light theme toggle, adding animation libraries for 
+            more sophisticated transitions, and integrating a contact form with backend functionality. Additionally, 
+            performance metrics monitoring and SEO optimization are being considered for future iterations.
           </Typography>
           
           <Typography 
@@ -349,10 +475,8 @@ export default function SudokuSolverPage() {
               color: 'grey.300'
             }}
           >
-            Due to the nature of UPenn's Academic Integrity Policy, I am unable to publicly share the 
-            code I developed or go in depth about the specifics of any type of implementation. I would 
-            be happy to share my project privately to any recruiters or engineers that would like to 
-            analyze my work in detail.
+            This portfolio website demonstrates proficiency in modern frontend development practices and serves 
+            as a foundation for showcasing future projects and technical growth.
           </Typography>
         </Paper>
       </Container>

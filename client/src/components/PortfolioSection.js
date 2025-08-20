@@ -22,7 +22,7 @@ const projects = [
     description: 'Template page 2',
     image: F1Logo,
     link: '/F1',
-    skills: ['Javascript', 'HTML', 'React', 'Material UI'],
+    skills: ['React', 'Javascript', 'PostgreSQL', 'AWS', 'Firebase Authenticator', 'DataGrip', 'Node.js'],
   },
   {
     title: 'Full Stack Application',
@@ -165,8 +165,8 @@ export default function PortfolioSection() {
                       label={skill}
                       size={isSmallMobile ? 'small' : 'medium'}
                       sx={{
-                        backgroundColor: 'black',
-                        color: 'white',
+                        backgroundColor: 'tan',
+                        color: 'black',
                         fontWeight: 500,
                         fontSize: isSmallMobile ? '0.7rem' : isMobile ? '0.8rem' : '0.9rem',
                         '&:hover': {
