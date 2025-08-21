@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Chip, Card, CardActionArea, CardContent, CardMedia, Typography, useMediaQuery, useTheme } from '@mui/material';
-import CardActions from '@mui/material/CardActions';
+import { Box, Chip, Card, CardContent, CardMedia, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 
 import F1Logo from '../images/F1_logo.png';
@@ -14,28 +13,28 @@ const projects = [
     title: 'Portfolio Website',
     description: 'Created a static website utilizing my skills with frontend development, specifically with the following technologies.',
     image: portfolio_img,
-    link: '/portfolio',
+    link: '/#/portfolio',
     skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
     title: 'Formula One Dashboard',
     description: 'Template page 2',
     image: F1Logo,
-    link: '/F1',
+    link: '/#/F1',
     skills: ['React', 'Javascript', 'PostgreSQL', 'AWS', 'Firebase Authenticator', 'DataGrip', 'Node.js'],
   },
   {
     title: 'Full Stack Application',
     description: 'Built a full stack website utilizing a postgrsql database hosted on AWS and user authentication to showcase the trees and film history in San Francisco.',
     image: reelroots,
-    link: '/reelroots',
+    link: '/#/reelroots',
     skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
   {
     title: 'Sudoku Solver via Machine Learning',
     description: 'Template page 4',
     image: sudoku,
-    link: '/sudoku',
+    link: '/#/sudoku',
     skills: ['Javascript', 'HTML', 'React', 'Material UI'],
   },
 ];
