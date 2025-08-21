@@ -47,8 +47,8 @@ export default function PortfolioSection() {
   return (
     <Box sx={{ 
       padding: isMobile ? 2 : 6, 
-      backgroundColor: 'black', 
-      minHeight: '100vh' 
+      backgroundColor: 'black' 
+      // minHeight: '100vh' 
     }}>
       <Box>
         {/* Section: Portfolio Header */}

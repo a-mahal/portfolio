@@ -9,8 +9,8 @@ export default function IntroSection() {
   return (
     <Box sx={{ 
       padding: isMobile ? 2 : 6, 
-      backgroundColor: 'black', 
-      minHeight: '85vh' 
+      backgroundColor: 'black'
+      // minHeight: '85vh' 
     }}>
       {/* Container for content */}
       <Box sx={{ 
