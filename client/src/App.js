@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { indigo, amber } from '@mui/material/colors'
 import { createTheme } from "@mui/material/styles";
@@ -24,14 +24,14 @@ export const theme = createTheme({
 });
 
 // App is the root component of our application and as children contain all our pages
-// We use React Router's BrowserRouter and Routes components to define the pages for
+// We use React Router's HashRouter and Routes components to define the pages for
 // our application, with each Route component representing a page and the common
 // NavBar component allowing us to navigate between pages (with hyperlinks)
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter basename="/portfolio">
+      <HashRouter>
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -44,7 +44,7 @@ export default function App() {
           <Route path="/albums/:album_id" element={<AlbumInfoPage />} />
           <Route path="/songs" element={<SongsPage />} /> */}
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 }
